@@ -1,4 +1,4 @@
-# Учебный проект №9 — React + TypeScript + SCSS + CRUD + Router
+# Учебный проект №9 — React + TypeScript + SCSS + CRUD + Router + Redux Toolkit
 
 Полнофункциональное мини-приложение с тремя модулями:
 
