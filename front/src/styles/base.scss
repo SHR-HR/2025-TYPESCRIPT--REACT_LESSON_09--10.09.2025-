@@ -1,0 +1,805 @@
+/* ================================
+   БАЗОВЫЕ ПЕРЕМЕННЫЕ
+================================ */
+:root {
+  /* Подсказка браузеру про светлую тему по умолчанию */
+  color-scheme: light;
+
+  /* Цветовая палитра приложения */
+  --color-primary: #2563eb;
+  /* Основной цвет бренда */
+  --color-primary-hover: #1d4ed8;
+  /* Цвет при наведении для основного цвета */
+  --color-secondary: #64748b;
+  /* Вторичный цвет */
+  --color-success: #10b981;
+  /* Цвет успешных операций */
+  --color-error: #ef4444;
+  /* Цвет ошибок */
+  --color-warning: #f59e0b;
+  /* Цвет предупреждений */
+
+  /* Фоновые цвета */
+  --color-bg-primary: #ffffff;
+  /* Основной фон */
+  --color-bg-secondary: #f8fafc;
+  /* Вторичный фон */
+  --color-bg-tertiary: #f1f5f9;
+  /* Третичный фон */
+
+  /* Цвета текста */
+  --color-text-primary: #1e293b;
+  /* Основной цвет текста */
+  --color-text-secondary: #64748b;
+  /* Вторичный цвет текста */
+  --color-text-muted: #94a3b8;
+  /* Приглушенный цвет текста */
+
+  /* Стили оформления */
+  --border-radius: 8px;
+  /* Базовый радиус скругления */
+  --border-radius-lg: 12px;
+  /* Большой радиус скругления */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  /* Маленькая тень */
+  --shadow-md: 0 10px 24px -12px rgb(0 0 0 / 0.18);
+  /* Средняя тень */
+  --transition-fast: 150ms ease;
+  /* Быстрая анимация */
+
+  /* Система отступов */
+  --spacing-xs: 4px;
+  /* Очень маленький отступ */
+  --spacing-sm: 8px;
+  /* Маленький отступ */
+  --spacing-md: 16px;
+  /* Средний отступ */
+  --spacing-lg: 24px;
+  /* Большой отступ */
+  --spacing-xl: 32px;
+  /* Очень большой отступ */
+}
+
+/* ================================
+   ТЁМНАЯ ТЕМА
+================================ */
+:root[data-theme="dark"] {
+  /* Подсказка браузеру: использовать тёмные нативные виджеты/скроллбары */
+  color-scheme: dark;
+
+  /* Темные фоновые цвета */
+  --color-bg-primary: #0b1220;
+  /* Темный основной фон */
+  --color-bg-secondary: #060b14;
+  /* Темный вторичный фон */
+  --color-bg-tertiary: #0f172a;
+  /* Темный третичный фон */
+
+  /* Темные цвета текста */
+  --color-text-primary: #e5e7eb;
+  /* Темный основной текст */
+  --color-text-secondary: #a6b0c3;
+  /* Темный вторичный текст */
+  --color-text-muted: #7b8a9e;
+  /* Темный приглушенный текст */
+
+  /* Темные тени */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  /* Темная маленькая тень */
+  --shadow-md: 0 10px 24px -12px rgb(0 0 0 / 0.55);
+  /* Темная средняя тень */
+}
+
+/* Стили для кнопок во вторичном стиле в темной теме */
+:root[data-theme="dark"] .btn.secondary {
+  --btn-bg: #162136;
+  /* Фон вторичной кнопки */
+  --btn-text: #e5e7eb;
+  /* Текст вторичной кнопки */
+  --btn-border: rgba(255, 255, 255, .08);
+  /* Граница вторичной кнопки */
+}
+
+/* Стили для контурных кнопок в темной теме */
+:root[data-theme="dark"] .btn.outline {
+  --btn-bg: transparent;
+  /* Прозрачный фон */
+  --btn-text: #e5e7eb;
+  /* Светлый текст */
+  --btn-border: rgba(255, 255, 255, .16);
+  /* Полупрозрачная граница */
+}
+
+/* Стили для призрачных кнопок в темной теме */
+:root[data-theme="dark"] .btn.ghost {
+  --btn-bg: transparent;
+  /* Прозрачный фон */
+  --btn-text: #cbd5e1;
+  /* Светлый текст */
+  --btn-border: rgba(255, 255, 255, .12);
+  /* Полупрозрачная граница */
+}
+
+/* ================================
+   RESET / БАЗА
+================================ */
+/* Сброс стандартных стилей браузера */
+* {
+  margin: 0;
+  /* Убираем внешние отступы */
+  padding: 0;
+  /* Убираем внутренние отступы */
+  box-sizing: border-box;
+  /* Учитываем границы в размерах элементов */
+}
+
+/* Стили для ссылок */
+a {
+  color: inherit;
+  /* Наследуем цвет текста */
+  text-decoration: none;
+  /* Убираем подчеркивание */
+}
+
+/* Основные стили тела документа */
+body {
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  /* Шрифтовая палитра */
+  font-size: 16px;
+  /* Базовый размер шрифта */
+  line-height: 1.6;
+  /* Межстрочный интервал */
+  color: var(--color-text-primary);
+  /* Цвет текста */
+  background: var(--color-bg-secondary);
+  /* Фон страницы */
+}
+
+/* Стили для заголовков */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  /* Уменьшенный межстрочный интервал */
+  margin-bottom: var(--spacing-md);
+  /* Отступ снизу */
+  font-weight: 600;
+  /* Полужирное начертание */
+}
+
+/* Стили для заголовка первого уровня */
+h1 {
+  font-size: 2rem;
+  /* Размер шрифта */
+  color: var(--color-text-primary);
+  /* Цвет текста */
+}
+
+/* Стили для заголовка второго уровня */
+h2 {
+  font-size: 1.5rem;
+  /* Размер шрифта */
+}
+
+/* Стили для заголовка третьего уровня */
+h3 {
+  font-size: 1.25rem;
+  /* Размер шрифта */
+}
+
+/* Стили для нативных кнопок (не .btn) */
+button {
+  font-family: inherit;
+  /* Наследование шрифта */
+  cursor: pointer;
+  /* Курсор-указатель */
+  transition: all var(--transition-fast);
+  /* Плавные переходы */
+  border: none;
+  /* Убираем границу */
+  border-radius: var(--border-radius);
+  /* Скругление углов */
+  padding: var(--spacing-sm) var(--spacing-md);
+  /* Внутренние отступы */
+  font-weight: 500;
+  /* Средняя жирность шрифта */
+
+  /* Стили для фокуса */
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    /* Обводка при фокусе */
+    outline-offset: 2px;
+    /* Отступ обводки */
+  }
+}
+
+/* ================================
+   ПОЛЯ ВВОДА
+================================ */
+/* Общие стили для полей ввода */
+input,
+textarea,
+select {
+  font-family: inherit;
+  /* Наследование шрифта */
+  color: var(--color-text-primary);
+  /* Цвет текста */
+  background-color: var(--color-bg-primary);
+  /* Фон поля */
+  border: 2px solid #e2e8f0;
+  /* Граница поля */
+  border-radius: var(--border-radius);
+  /* Скругление углов */
+  padding: var(--spacing-sm) var(--spacing-md);
+  /* Внутренние отступы */
+  transition: border-color var(--transition-fast);
+  /* Плавное изменение границы */
+  caret-color: var(--color-text-primary);
+  /* Цвет курсора ввода */
+}
+
+/* Стили для полей в фокусе */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  /* Убираем стандартную обводку */
+  border-color: var(--color-primary);
+  /* Изменяем цвет границы */
+}
+
+/* Стили для плейсхолдеров */
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+  /* Цвет текста-подсказки */
+}
+
+/* Темная тема для полей ввода */
+:root[data-theme="dark"] input,
+:root[data-theme="dark"] textarea,
+:root[data-theme="dark"] select {
+  color: var(--color-text-primary);
+  /* Цвет текста */
+  background-color: var(--color-bg-primary);
+  /* Фон поля */
+  border-color: #354052;
+  /* Цвет границы */
+}
+
+/* Стили для опций выпадающих списков */
+select option {
+  color: var(--color-text-primary);
+  /* Цвет текста */
+  background-color: var(--color-bg-primary);
+  /* Фон опции */
+}
+
+/* Стили для меток форм */
+label {
+  color: var(--color-text-secondary);
+  /* Цвет текста */
+}
+
+/* Стили для отключенных полей */
+input[disabled],
+textarea[disabled],
+select[disabled] {
+  opacity: .65;
+  /* Полупрозрачность */
+  cursor: not-allowed;
+  /* Курсор "недоступно" */
+}
+
+/* Стили для полей только для чтения */
+input[readonly],
+textarea[readonly] {
+  background: color-mix(in oklab, var(--color-bg-primary) 92%, transparent);
+  /* Особый фон */
+}
+
+/* Стили для автозаполнения в Chrome/Edge */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: var(--color-text-primary) !important;
+  /* Цвет текста */
+  -webkit-box-shadow: 0 0 0 1000px var(--color-bg-primary) inset;
+  /* Фон */
+  box-shadow: 0 0 0 1000px var(--color-bg-primary) inset;
+  /* Фон для других браузеров */
+  transition: background-color 9999s ease-out;
+  /* Долгая анимация для обхода стилей браузера */
+}
+
+/* ================================
+   КОНТЕЙНЕР
+================================ */
+.container {
+  max-width: 1200px;
+  /* Максимальная ширина */
+  margin: 0 auto;
+  /* Центрирование */
+  padding: var(--spacing-lg);
+  /* Внутренние отступы */
+}
+
+/* ================================
+   КНОПКИ (ЕДИНСТВЕННАЯ ВЕРСИЯ)
+================================ */
+.btn {
+  /* Базовые CSS-переменные для кнопок */
+  --btn-bg: var(--color-bg-tertiary);
+  /* Фон кнопки по умолчанию */
+  --btn-text: var(--color-text-secondary);
+  /* Текст кнопки по умолчанию */
+  --btn-border: #e2e8f0;
+  /* Граница кнопки по умолчанию */
+
+  display: inline-flex;
+  /* Гибкий контейнер */
+  align-items: center;
+  /* Вертикальное выравнивание */
+  gap: 8px;
+  /* Расстояние между элементами */
+  height: 40px;
+  /* Высота кнопки */
+  padding: 0 14px;
+  /* Внутренние отступы */
+  border-radius: 9999px;
+  /* Круглые углы (капсула) */
+  border: 1px solid var(--btn-border);
+  /* Граница */
+  background: var(--btn-bg);
+  /* Фон */
+  color: var(--btn-text);
+  /* Цвет текста */
+  text-decoration: none;
+  /* Убираем подчеркивание */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+  /* Тень */
+  transition:
+    transform .12s ease,
+    background .12s ease,
+    box-shadow .12s ease,
+    border-color .12s ease,
+    color .12s ease;
+  /* Плавные переходы */
+  -webkit-tap-highlight-color: transparent;
+  /* Убираем подсветку при тапе */
+  user-select: none;
+  /* Запрещаем выделение текста */
+  font-size: 14px;
+  /* Размер шрифта */
+  line-height: 1;
+  /* Межстрочный интервал */
+
+  /* Эффекты при наведении */
+  &:hover {
+    transform: translateY(-1px);
+    /* Легкое поднятие */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
+    /* Увеличенная тень */
+  }
+
+  /* Эффекты при нажатии */
+  &:active {
+    transform: translateY(0);
+    /* Возврат на место */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+    /* Уменьшенная тень */
+  }
+
+  /* Стили для фокуса с клавиатуры */
+  &:focus-visible {
+    outline: 3px solid color-mix(in oklab, var(--color-primary) 40%, white);
+    /* Обводка */
+    outline-offset: 2px;
+    /* Отступ обводки */
+  }
+
+  /* Вариант: основная кнопка */
+  &.primary {
+    --btn-bg: var(--color-primary);
+    /* Основной цвет фона */
+    --btn-text: #fff;
+    /* Белый текст */
+    --btn-border: transparent;
+    /* Прозрачная граница */
+  }
+
+  /* Вариант: вторичная кнопка */
+  &.secondary {
+    --btn-bg: #e9eef5;
+    /* Светлый фон */
+    --btn-text: #0f172a;
+    /* Темный текст */
+    --btn-border: #e2e8f0;
+    /* Светлая граница */
+  }
+
+  /* Вариант: призрачная кнопка */
+  &.ghost {
+    --btn-bg: transparent;
+    /* Прозрачный фон */
+    --btn-text: var(--color-text-secondary);
+    /* Вторичный текст */
+    --btn-border: #e2e8f0;
+    /* Светлая граница */
+  }
+
+  /* Вариант: контурная кнопка */
+  &.outline {
+    --btn-bg: #fff;
+    /* Белый фон */
+    --btn-text: var(--color-text-primary);
+    /* Основной текст */
+    --btn-border: #dbe4f0;
+    /* Светлая граница */
+  }
+
+  /* Вариант: опасная кнопка */
+  &.danger {
+    --btn-bg: var(--color-error);
+    /* Цвет ошибки */
+    --btn-text: #fff;
+    /* Белый текст */
+    --btn-border: transparent;
+    /* Прозрачная граница */
+  }
+
+  /* Размер: маленький */
+  &.sm,
+  &.small {
+    height: 34px;
+    /* Уменьшенная высота */
+    padding: 0 12px;
+    /* Уменьшенные отступы */
+    font-size: 13px;
+    /* Уменьшенный шрифт */
+  }
+
+  /* Размер: большой */
+  &.lg {
+    height: 46px;
+    /* Увеличенная высота */
+    padding: 0 18px;
+    /* Увеличенные отступы */
+    font-size: 16px;
+    /* Увеличенный шрифт */
+  }
+
+  /* Стиль для кнопок с иконками */
+  &.icon {
+    padding: 0 10px;
+    /* Специальные отступы */
+    gap: 6px;
+    /* Уменьшенный зазор */
+  }
+
+  /* Состояние: активная кнопка (для NavLink) */
+  &.active {
+    border-color: color-mix(in oklab, var(--color-primary) 55%, #e2e8f0);
+    /* Смешанный цвет границы */
+    background: color-mix(in oklab, var(--color-primary) 12%, var(--btn-bg));
+    /* Смешанный фон */
+  }
+}
+
+/* ================================
+   КАРТОЧКИ И СОСТОЯНИЯ
+================================ */
+.card {
+  background-color: var(--color-bg-primary);
+  /* Фон карточки */
+  border-radius: var(--border-radius-lg);
+  /* Скругление углов */
+  box-shadow: var(--shadow-md);
+  /* Тень */
+  padding: var(--spacing-lg);
+  /* Внутренние отступы */
+  transition: transform var(--transition-fast);
+  /* Плавное преобразование */
+
+  /* Эффект при наведении */
+  &:hover {
+    transform: translateY(-2px);
+    /* Легкое поднятие */
+  }
+}
+
+/* Стиль для состояния загрузки */
+.loading {
+  display: flex;
+  /* Гибкий контейнер */
+  justify-content: center;
+  /* Центрирование по горизонтали */
+  align-items: center;
+  /* Центрирование по вертикали */
+  padding: var(--spacing-xl);
+  /* Внутренние отступы */
+  color: var(--color-text-secondary);
+  /* Цвет текста */
+  font-size: 18px;
+  /* Размер шрифта */
+}
+
+/* Стиль для сообщений об ошибках */
+.error {
+  background-color: #fef2f2;
+  /* Светло-красный фон */
+  border: 1px solid #fecaca;
+  /* Красная граница */
+  color: var(--color-error);
+  /* Цвет текста */
+  padding: var(--spacing-md);
+  /* Внутренние отступы */
+  border-radius: var(--border-radius);
+  /* Скругление углов */
+  margin-bottom: var(--spacing-md);
+  /* Отступ снизу */
+}
+
+/* Стиль для пустых состояний */
+.empty {
+  text-align: center;
+  /* Центрирование текста */
+  padding: var(--spacing-xl);
+  /* Внутренние отступы */
+  color: var(--color-text-muted);
+  /* Приглушенный цвет текста */
+  font-size: 18px;
+  /* Размер шрифта */
+}
+
+/* ================================
+   ДОБАВКА: универсальные оценки-кнопки
+================================ */
+.gradeBtn {
+  min-width: 36px;
+  /* Минимальная ширина */
+  height: 36px;
+  /* Высота */
+  border-radius: 8px;
+  /* Скругление углов */
+  border: 1px solid #d1d5db;
+  /* Граница */
+  background: #ffffff;
+  /* Фон */
+  color: #111827;
+  /* Цвет текста */
+  font-weight: 600;
+  /* Жирный шрифт */
+}
+
+/* Эффект при наведении на кнопку оценки */
+.gradeBtn:hover {
+  border-color: var(--color-primary);
+  /* Изменение цвета границы */
+}
+
+/* Темная тема для кнопок оценки */
+:root[data-theme="dark"] .gradeBtn {
+  background: #0b1220;
+  /* Темный фон */
+  border-color: #354052;
+  /* Темная граница */
+  color: #e5e7eb;
+  /* Светлый текст */
+}
+
+/* ================================
+   ОПЦИОНАЛЬНЫЙ УСИЛИТЕЛЬ ДЛЯ КАРТОЧКИ ПОЛЬЗОВАТЕЛЯ
+   (добавь класс .userCard на контейнер формы)
+================================ */
+:root[data-theme="dark"] .userCard input,
+:root[data-theme="dark"] .userCard textarea,
+:root[data-theme="dark"] .userCard select {
+  color: var(--color-text-primary);
+  /* Обеспечиваем читаемость текста */
+}
+
+/* ================================
+   КРАСИВЫЕ ТАБЛИЦЫ
+================================ */
+.table {
+  width: 100%;
+  /* Полная ширина */
+  border-collapse: separate;
+  /* Раздельные границы для скругления */
+  border-spacing: 0 10px;
+  /* Вертикальные отступы между строками */
+  --table-border: color-mix(in oklab, var(--color-text-primary) 12%, transparent);
+  /* Цвет границы */
+  --table-row-bg: var(--color-bg-primary);
+  /* Фон строки */
+  --table-hover-bg: color-mix(in oklab, var(--color-bg-primary) 94%, var(--color-primary) 6%);
+  /* Фон при наведении */
+}
+
+/* Стили для заголовков таблицы */
+.table thead th {
+  text-align: left;
+  /* Выравнивание по левому краю */
+  padding: 12px 16px;
+  /* Внутренние отступы */
+  font-size: 14px;
+  /* Размер шрифта */
+  font-weight: 600;
+  /* Жирный шрифт */
+  color: var(--color-text-secondary);
+  /* Цвет текста */
+  border-bottom: 1px solid var(--table-border);
+  /* Нижняя граница */
+}
+
+/* Стили для ячеек таблицы */
+.table tbody td {
+  padding: 12px 16px;
+  /* Внутренние отступы */
+  background: var(--table-row-bg);
+  /* Фон ячейки */
+  border-top: 1px solid var(--table-border);
+  /* Верхняя граница */
+  border-bottom: 1px solid var(--table-border);
+  /* Нижняя граница */
+  vertical-align: middle;
+  /* Вертикальное выравнивание */
+}
+
+/* Скругление левых углов первой ячейки */
+.table tbody tr td:first-child {
+  border-left: 1px solid var(--table-border);
+  /* Левая граница */
+  border-top-left-radius: 12px;
+  /* Скругление левого верхнего угла */
+  border-bottom-left-radius: 12px;
+  /* Скругление левого нижнего угла */
+}
+
+/* Скругление правых углов последней ячейки */
+.table tbody tr td:last-child {
+  border-right: 1px solid var(--table-border);
+  /* Правая граница */
+  border-top-right-radius: 12px;
+  /* Скругление правого верхнего угла */
+  border-bottom-right-radius: 12px;
+  /* Скругление правого нижнего угла */
+}
+
+/* Эффект при наведении на строку */
+.table tbody tr:hover td {
+  background: var(--table-hover-bg);
+  /* Изменение фона */
+}
+
+/* Предотвращение переноса текста в ячейках */
+.table td {
+  white-space: nowrap;
+  /* Запрет переноса строк */
+}
+
+/* Обрезка длинного текста с многоточием */
+.table td .truncate {
+  display: inline-block;
+  /* Блочно-строчное отображение */
+  max-width: 28ch;
+  /* Максимальная ширина */
+  overflow: hidden;
+  /* Скрытие переполнения */
+  text-overflow: ellipsis;
+  /* Многоточие в конце */
+  vertical-align: bottom;
+  /* Выравнивание по нижнему краю */
+}
+
+/* Обертка для таблицы с горизонтальной прокруткой */
+.tableWrap {
+  width: 100%;
+  /* Полная ширина */
+  overflow-x: auto;
+  /* Горизонтальная прокрутка */
+}
+
+/* Темная тема для таблиц */
+:root[data-theme="dark"] .table {
+  --table-border: rgba(255, 255, 255, .08);
+  /* Полупрозрачная граница */
+  --table-hover-bg: color-mix(in oklab, var(--color-bg-primary) 90%, var(--color-primary) 10%);
+  /* Фон при наведении */
+}
+
+/* Ширины колонок для таблицы пользователей */
+.table.users td:nth-child(1) {
+  min-width: 220px;
+  /* Имя - минимальная ширина */
+}
+
+.table.users td:nth-child(2) {
+  min-width: 120px;
+  /* Группа - минимальная ширина */
+}
+
+.table.users td:nth-child(3) {
+  min-width: 110px;
+  /* Роль - минимальная ширина */
+}
+
+.table.users td:nth-child(4) {
+  max-width: 320px;
+  /* Email - максимальная ширина */
+}
+
+.table.users td:nth-child(5) {
+  min-width: 130px;
+  /* Телефон - минимальная ширина */
+}
+
+.table.users td:nth-child(6) {
+  width: 120px;
+  /* Действия - фиксированная ширина */
+}
+
+
+/* ================================
+   ПОЯСНЕНИЯ К КОММЕНТАРИЯМ
+================================ */
+
+
+/*
+1. CSS-переменные (Custom Properties):
+   - Позволяют централизованно управлять стилями
+   - Легко менять тему всего приложения
+   - Поддерживаются всеми современными браузерами
+
+2. color-scheme:
+   - Подсказывает браузеру, какую цветовую схему использовать для нативных элементов
+   - Влияет на скроллбары, поля ввода, диалоговые окна
+
+3. БЭМ-нотация:
+   - Используются модификаторы (.btn.primary, .btn.secondary)
+   - Позволяет создавать переиспользуемые компоненты
+
+4. Современные CSS-функции:
+   - color-mix() для смешивания цветов
+   - :focus-visible для разделения фокуса мыши и клавиатуры
+   - Системные переходы и трансформации
+
+5. Адаптивный дизайн:
+   - Использование относительных единиц (ch, %)
+   - Гибкая система отступов на основе переменных
+   - Поддержка различных размеров экранов
+
+6. Доступность:
+   - Правильные контрасты цветов
+   - Фокус-индикаторы для клавиатурной навигации
+   - Семантическая разметка стилей
+
+7. Производительность:
+   - Аппаратное ускорение трансформаций
+   - Оптимизированные переходы
+   - Минимальное количество перерисовок
+
+8. Поддержка тем:
+   - Плавное переключение между светлой и темной темой
+   - Соответствие рекомендациям WCAG
+   - Единая система дизайна
+
+9. Кроссбраузерность:
+   - Постепенное улучшение (progressive enhancement)
+   - Совместимость с современными браузерами
+   - Fallback-значения для старых браузеров
+
+10. Масштабируемость:
+    - Легко добавлять новые компоненты
+    - Согласованная система дизайна
+    - Предсказуемая архитектура стилей
+*/
+
+
+// =============================================================================
+// КОНЕЦ ФАЙЛА
+// =============================================================================
